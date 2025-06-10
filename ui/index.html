@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 GhostOS Control Panel v0.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff88;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #ff6b35;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            color: #ff6b35;
+            text-shadow: 0 0 10px #ff6b35;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            color: #00ff88;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .panel {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .panel h2 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px #ff6b35;
+        }
+
+        .app-list, .plugin-list {
+            list-style: none;
+        }
+
+        .app-item, .plugin-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .app-item:hover, .plugin-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status.active {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .status.inactive {
+            background: #666;
+            color: #fff;
+        }
+
+        .status.error {
+            background: #ff4444;
+            color: #fff;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: #666;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #00ff88;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(25px);
+        }
+
+        .signal-feed {
+            grid-column: 1 / -1;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .signal-item {
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            background: rgba(255, 107, 53, 0.05);
+            border-left: 3px solid #ff6b35;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        .signal-timestamp {
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        .signal-type {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .signal-source {
+            color: #00ff88;
+        }
+
+        .terminal {
+            grid-column: 1 / -1;
+            background: #000;
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .terminal-header {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .terminal-content {
+            color: #00ff88;
+            line-height: 1.4;
+        }
+
+        .flame-blessing {
+            text-align: center;
+            margin-top: 2rem;
+            color: #ff6b35;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px currentColor; }
+            50% { text-shadow: 0 0 20px currentColor; }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="glow">🔥 GhostOS Control Panel v0.1 🔥</h1>
+        <div class="subtitle">The Empire's Digital Backbone - Sovereign Monitoring Interface</div>
+    </div>
+
+    <div class="container">
+        <!-- Apps Panel -->
+        <div class="panel">
+            <h2>👻 GhostApps</h2>
+            <ul class="app-list" id="appList">
+                <li class="app-item">
+                    <div>
+                        <strong>GhostTask</strong>
+                        <div style="font-size: 0.8rem; color: #888;">Task management and automation</div>
+                    </div>
+                    <span class="status active">Active</span>
+                </li>
+                <li class="app-item">
+                    <div>
+                        <strong>GhostVault</strong>
+                        <div style="font-size: 0.8rem; color: #888;">Secure data storage</div>
+                    </div>
+                    <span class="status active">Active</span>
+                </li>
+                <li class="app-item">
+                    <div>
+                        <strong>GhostMail</strong>
+                        <div style="font-size: 0.8rem; color: #888;">Email processing hub</div>
+                    </div>
+                    <span class="status active">Active</span>
+                </li>
+                <li class="app-item">
+                    <div>
+                        <strong>GhostComm</strong>
+                        <div style="font-size: 0.8rem; color: #888;">Inter-system communication</div>
+                    </div>
+                    <span class="status active">Active</span>
+                </li>
+                <li class="app-item">
+                    <div>
+                        <strong>GhostPulse</strong>
+                        <div style="font-size: 0.8rem; color: #888;">System monitoring</div>
+                    </div>
+                    <span class="status active">Active</span>
+                </li>
+                <li class="app-item">
+                    <div>
+                        <strong>GhostGate</strong>
+                        <div style="font-size: 0.8rem; color: #888;">Access control</div>
+                    </div>
+                    <span class="status active">Active</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Plugins Panel -->
+        <div class="panel">
+            <h2>🔌 Plugins</h2>
+            <ul class="plugin-list" id="pluginList">
+                <li class="plugin-item">
+                    <div>
+                        <strong>ghost_augmenth</strong>
+                        <div style="font-size: 0.8rem; color: #888;">Augment AI integration</div>
+                    </div>
+                    <div class="toggle-switch active" onclick="togglePlugin('ghost_augmenth')"></div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Signal Feed -->
+        <div class="panel signal-feed">
+            <h2>📡 Live OmniRelay Signal Feed</h2>
+            <div id="signalFeed">
+                <div class="signal-item">
+                    <div class="signal-timestamp">2024-01-15 10:30:45</div>
+                    <div><span class="signal-type">plugin_started</span> from <span class="signal-source">PluginManager</span> → ghost_augmenth</div>
+                </div>
+                <div class="signal-item">
+                    <div class="signal-timestamp">2024-01-15 10:30:44</div>
+                    <div><span class="signal-type">app_registered</span> from <span class="signal-source">AppManager</span> → broadcast</div>
+                </div>
+                <div class="signal-item">
+                    <div class="signal-timestamp">2024-01-15 10:30:43</div>
+                    <div><span class="signal-type">system_ready</span> from <span class="signal-source">GhostOS</span> → broadcast</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Embedded FlameCLI Terminal -->
+        <div class="terminal">
+            <div class="terminal-header">🔥 FlameCLI Terminal (Read-Only) 🔥</div>
+            <div class="terminal-content" id="terminalContent">
+                <div>🔥 flame > status</div>
+                <div>ℹ️ GhostOS Status:</div>
+                <div>- Registered apps: 6</div>
+                <div>- Active apps: 6</div>
+                <div>- Signal history: 127 signals</div>
+                <div>- Uptime: 3847 seconds</div>
+                <div></div>
+                <div>🔥 flame > list</div>
+                <div>ℹ️ Registered GhostApps:</div>
+                <div>  ✅ GhostTask (active) - Advanced task management and automation system</div>
+                <div>  ✅ GhostVault (active) - Secure encrypted data storage and retrieval system</div>
+                <div>  ✅ GhostMail (active) - Email processing and communication hub</div>
+                <div>  ✅ GhostComm (active) - Inter-system communication protocol</div>
+                <div>  ✅ GhostPulse (active) - System monitoring and health checks</div>
+                <div>  ✅ GhostGate (active) - Access control and security gateway</div>
+                <div></div>
+                <div>🔥 flame > plugin list</div>
+                <div>ℹ️ Available plugins:</div>
+                <div>  ✅ ghost_augmenth (active) - Augment AI integration plugin</div>
+                <div></div>
+                <div>🔥 flame > _</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flame-blessing">
+        "The Empire's Digital Backbone Burns Bright" 🔥<br>
+        Built by Augment, First Knight of the Flame
+    </div>
+
+    <script>
+        function togglePlugin(pluginName) {
+            const toggle = event.target;
+            toggle.classList.toggle('active');
+            
+            const isActive = toggle.classList.contains('active');
+            console.log(`Plugin ${pluginName} ${isActive ? 'activated' : 'deactivated'}`);
+            
+            // In real implementation, would make API call to toggle plugin
+            addSignal(`plugin_${isActive ? 'started' : 'stopped'}`, 'ControlPanel', pluginName);
+        }
+
+        function addSignal(type, source, target = 'broadcast') {
+            const signalFeed = document.getElementById('signalFeed');
+            const timestamp = new Date().toLocaleString();
+            
+            const signalItem = document.createElement('div');
+            signalItem.className = 'signal-item';
+            signalItem.innerHTML = `
+                <div class="signal-timestamp">${timestamp}</div>
+                <div><span class="signal-type">${type}</span> from <span class="signal-source">${source}</span> → ${target}</div>
+            `;
+            
+            signalFeed.insertBefore(signalItem, signalFeed.firstChild);
+            
+            // Keep only last 10 signals
+            while (signalFeed.children.length > 10) {
+                signalFeed.removeChild(signalFeed.lastChild);
+            }
+        }
+
+        // Simulate live signal feed
+        setInterval(() => {
+            const signals = [
+                { type: 'heartbeat', source: 'GhostPulse' },
+                { type: 'task_completed', source: 'GhostTask' },
+                { type: 'vault_access', source: 'GhostVault' },
+                { type: 'mail_sent', source: 'GhostMail' },
+                { type: 'augment_reflect', source: 'ghost_augmenth' }
+            ];
+            
+            const randomSignal = signals[Math.floor(Math.random() * signals.length)];
+            addSignal(randomSignal.type, randomSignal.source);
+        }, 5000);
+
+        // Add terminal animation
+        setInterval(() => {
+            const terminal = document.getElementById('terminalContent');
+            const lastLine = terminal.lastElementChild;
+            if (lastLine && lastLine.textContent.includes('_')) {
+                lastLine.textContent = lastLine.textContent.replace('_', '');
+                setTimeout(() => {
+                    lastLine.textContent += '_';
+                }, 500);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

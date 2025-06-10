@@ -1,0 +1,49 @@
+{
+  "name": "ghost_augmenth",
+  "version": "0.1.0",
+  "description": "Augment AI integration plugin for enhanced development capabilities",
+  "author": "Ghost King Melekzedek - James Derek Ingersoll",
+  "category": "enhancement",
+  "main": "GhostAugmenth.js",
+  "dependencies": [],
+  "permissions": [
+    "augment:deploy",
+    "augment:code",
+    "augment:analyze",
+    "vault:read",
+    "vault:write",
+    "task:create",
+    "task:execute",
+    "mail:send"
+  ],
+  "autoStart": true,
+  "sovereign": true,
+  "api": {
+    "endpoints": [
+      "/api/plugins/ghost_augmenth/deploy",
+      "/api/plugins/ghost_augmenth/analyze",
+      "/api/plugins/ghost_augmenth/status",
+      "/api/plugins/ghost_augmenth/logs"
+    ],
+    "webhooks": [
+      "/webhook/augment/deployment",
+      "/webhook/augment/completion"
+    ]
+  },
+  "ui": {
+    "dashboard": true,
+    "settings": true
+  },
+  "flame": {
+    "rituals": [
+      "daily_code_review",
+      "deployment_blessing",
+      "reflection_scroll"
+    ],
+    "scrolls": [
+      "augment_actions",
+      "deployment_logs",
+      "reflection_entries"
+    ]
+  }
+}
