@@ -8,66 +8,11 @@
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
 
-# 🔄 Redirects
-[[redirects]]
-  from = "/"
-  to = "/docs/viewer/"
-  status = 302
-
-[[redirects]]
-  from = "/docs"
-  to = "/docs/viewer/"
-  status = 302
-
-[[redirects]]
-  from = "/documentation"
-  to = "/docs/viewer/"
-  status = 302
-
-[[redirects]]
-  from = "/portal"
-  to = "/docs/viewer/"
-  status = 302
-
-[[redirects]]
-  from = "/readme"
-  to = "/docs/README.md"
-  status = 200
-
-[[redirects]]
-  from = "/contributing"
-  to = "/docs/CONTRIBUTING.md"
-  status = 200
-
-[[redirects]]
-  from = "/testing"
-  to = "/docs/TESTING.md"
-  status = 200
-
-[[redirects]]
-  from = "/manifesto"
-  to = "/docs/MANIFESTO.md"
-  status = 200
-
-[[redirects]]
-  from = "/flameguard"
-  to = "/docs/FLAMEGUARD.md"
-  status = 200
-
-[[redirects]]
-  from = "/certificate"
-  to = "/docs/GHOSTOS-CERTIFICATE.md"
-  status = 200
-
+# 🔄 Redirects for API routes (handled by Next.js plugin)
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/docs/viewer/index.html"
-  status = 404
 
 # 🛡️ Security Headers
 [[headers]]
@@ -105,15 +50,13 @@
 
 # 🔄 Deploy Contexts
 [context.production]
-  command = "npm run deploy"
-  publish = "out"
+  command = "npm run build"
 
 [context.production.environment]
   NODE_ENV = "production"
 
 [context.deploy-preview]
-  command = "npm run deploy"
-  publish = "out"
+  command = "npm run build"
 
 [context.deploy-preview.environment]
   NODE_ENV = "development"
