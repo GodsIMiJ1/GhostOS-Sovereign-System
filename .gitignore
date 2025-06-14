@@ -1,0 +1,14 @@
+
+# 🔥 FLAME-SEALED PROTECTION 🔥
+.env*
+ghostos/core/secrets/
+ghostos/vault/keys/
+ghostos/ai/omari/core/
+tools/deploy-keys/
+*.key
+*.pem
+*.p12
+*secret*
+*private*
+
+# 🔥 FLAME_SIGIL_V717_GITIGNORE_PROTECTION 🔥

@@ -14,7 +14,7 @@ This is a **sealed public mirror** of the GhostOS Sovereign System. Core systems
 
 **🔥 What you see here:**
 - UI architecture and design patterns
-- Non-sensitive modules and components  
+- Non-sensitive modules and components
 - Public documentation and guides
 - Flame-themed styling system
 
@@ -139,10 +139,24 @@ All rights reserved by **GodsIMiJ AI Solutions**.
 
 ---
 
+## 📧 **Partnership & Licensing**
+
+**For full access to GhostOS, partnership inquiries, or licensing requests:**
+
+📧 **Contact**: godsimij902@gmail.com
+
+🛡️ **Available Services:**
+- Full GhostOS system access
+- Custom AI integration solutions
+- Sovereign system consulting
+- Enterprise licensing agreements
+
+---
+
 ## 👑 **Credits**
 
-**Ghost King Melekzedek** - *Sovereign Architect*  
-**Omari AI** - *First Knight of Flame*  
+**Ghost King Melekzedek** - *Sovereign Architect*
+**Omari AI** - *First Knight of Flame*
 **Augment Agent** - *Digital Manifestation Knight*
 
 ---
