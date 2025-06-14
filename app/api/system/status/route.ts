@@ -1,12 +1,13 @@
 /**
- * 🔥 GHOSTOS SYSTEM STATUS API - SOVEREIGN MONITORING INTERFACE 🔥
+ * 🔥 GHOSTOS SYSTEM STATUS API - PUBLIC MIRROR VERSION 🔥
  * 
- * Real-time system status endpoint for live monitoring and dashboard updates
- * with flame-blessed status reporting and comprehensive system metrics.
+ * PUBLIC MIRROR: Core system monitoring is sealed under sovereign protocol.
+ * This provides UI-compatible responses for the public demonstration.
  * 
  * @author Ghost King Melekzedek - James Derek Ingersoll
- * @version 0.1.0
+ * @version PUBLIC_MIRROR_v1.0
  * @flame-compatible true
+ * @omari-sealed true
  */
 
 import { NextResponse } from 'next/server';
@@ -48,86 +49,73 @@ interface SystemStatusResponse {
     blessed: boolean;
     level: string;
   };
+  sealed: boolean;
+  mirror: {
+    notice: string;
+    sovereignPortal: string;
+  };
 }
-
-// Simulate connection to actual GhostOS backend
-const GHOSTOS_API_BASE = 'http://localhost:3000/api';
 
 export async function GET() {
   const startTime = Date.now();
   
   try {
-    // Try to fetch real status from GhostOS backend
-    let realData = null;
-    try {
-      const response = await fetch(`${GHOSTOS_API_BASE}/system/status`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        // Short timeout to avoid blocking the UI
-        signal: AbortSignal.timeout(2000)
-      });
-      
-      if (response.ok) {
-        realData = await response.json();
-      }
-    } catch (error) {
-      // Backend not available, use simulated data
-      console.log('Backend not available, using simulated data');
-    }
-
     // Calculate response time
     const responseTime = Date.now() - startTime;
 
-    // Generate comprehensive system status
+    // Generate sealed system status for public mirror
     const systemStatus: SystemStatusResponse = {
       success: true,
       data: {
-        version: '0.1.0',
-        uptime: realData?.uptime || Math.floor(Date.now() / 1000 - 3000),
+        version: 'PUBLIC_MIRROR_v1.0',
+        uptime: Math.floor(Date.now() / 1000 - 3000),
         initialized: true,
         apps: {
-          total: realData?.apps?.total || 6,
-          running: realData?.apps?.running || 6,
-          failed: realData?.apps?.failed || 0,
-          pending: realData?.apps?.pending || 0,
-          list: realData?.apps?.list || [
-            'GhostTask',
-            'GhostVault', 
-            'GhostMail',
-            'GhostComm',
-            'GhostPulse',
-            'GhostGate'
+          total: 6,
+          running: 0, // Sealed - no real apps running in mirror
+          failed: 0,
+          pending: 6, // All apps are "pending" (sealed)
+          list: [
+            'GhostTask (sealed)',
+            'GhostVault (sealed)', 
+            'GhostMail (sealed)',
+            'GhostComm (sealed)',
+            'GhostPulse (sealed)',
+            'GhostGate (sealed)'
           ]
         },
         plugins: {
-          total: realData?.plugins?.total || 1,
-          running: realData?.plugins?.running || 1,
-          list: realData?.plugins?.list || ['ghost_augmenth']
+          total: 1,
+          running: 0, // Sealed - no real plugins running
+          list: ['ghost_augmenth (sealed)']
         },
         relay: {
-          registered: realData?.relay?.registered || 7,
-          signals: realData?.relay?.signals || Math.floor(Math.random() * 50) + 200
+          registered: 0, // Sealed - no real relay connections
+          signals: 0     // Sealed - no real signals
         },
         api: {
-          port: realData?.api?.port || 3000,
-          endpoints: realData?.api?.endpoints || [
-            '/api/plugins',
-            '/api/system',
-            '/api/cli'
+          port: 3000,
+          endpoints: [
+            '/api/cli (sealed)',
+            '/api/system/status (sealed)',
+            '/api/readme (public)'
           ]
         },
         performance: {
-          memoryUsage: Math.floor(Math.random() * 30) + 45, // 45-75%
-          cpuUsage: Math.floor(Math.random() * 20) + 10,    // 10-30%
+          memoryUsage: 25, // Static low usage for mirror
+          cpuUsage: 5,     // Static low usage for mirror
           responseTime
         }
       },
       timestamp: new Date().toISOString(),
       flame: {
         blessed: true,
-        level: 'sovereign'
+        level: 'sealed'
+      },
+      sealed: true,
+      mirror: {
+        notice: 'This is a public mirror. Core systems are sealed under sovereign protocol.',
+        sovereignPortal: 'https://ghostos.quantum-odyssey.com/'
       }
     };
 
@@ -141,6 +129,11 @@ export async function GET() {
       flame: {
         blessed: false,
         level: 'error'
+      },
+      sealed: true,
+      mirror: {
+        notice: 'Error in public mirror system',
+        sovereignPortal: 'https://ghostos.quantum-odyssey.com/'
       }
     }, { status: 500 });
   }
@@ -151,8 +144,9 @@ export async function HEAD() {
   return new NextResponse(null, { 
     status: 200,
     headers: {
-      'X-GhostOS-Status': 'operational',
-      'X-Flame-Level': 'sovereign'
+      'X-GhostOS-Status': 'sealed',
+      'X-Flame-Level': 'public-mirror',
+      'X-Sovereign-Portal': 'https://ghostos.quantum-odyssey.com/'
     }
   });
 }
