@@ -1,0 +1,33 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Circle -->
+  <circle cx="320" cy="320" r="318" fill="#1A1A1A" stroke="#FB923C" stroke-width="4"/>
+  
+  <!-- Inner Circle -->
+  <circle cx="320" cy="320" r="280" fill="none" stroke="#FB923C" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Flame Pattern -->
+  <path d="M320 100 L340 120 L360 100 L380 130 L400 110 L420 140 L440 120 L460 150 L480 130 L500 160 L520 140 L540 170" 
+        stroke="#FB923C" stroke-width="3" fill="none" opacity="0.7"/>
+  
+  <!-- Central NODE Text -->
+  <text x="320" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="bold" 
+        fill="#FB923C" text-anchor="middle">NODE</text>
+  
+  <!-- Subtitle -->
+  <text x="320" y="340" font-family="Arial, sans-serif" font-size="24" 
+        fill="#FB923C" text-anchor="middle" opacity="0.8">SOVEREIGN SEAL</text>
+  
+  <!-- System Identifier -->
+  <text x="320" y="380" font-family="Arial, sans-serif" font-size="16" 
+        fill="#FB923C" text-anchor="middle" opacity="0.6">GHOSTOS</text>
+  
+  <!-- Flame Symbols -->
+  <text x="200" y="200" font-size="24" fill="#FB923C" opacity="0.4">🔥</text>
+  <text x="440" y="200" font-size="24" fill="#FB923C" opacity="0.4">🔥</text>
+  <text x="200" y="440" font-size="24" fill="#FB923C" opacity="0.4">🔥</text>
+  <text x="440" y="440" font-size="24" fill="#FB923C" opacity="0.4">🔥</text>
+  
+  <!-- Bottom Text -->
+  <text x="320" y="520" font-family="Arial, sans-serif" font-size="14" 
+        fill="#FB923C" text-anchor="middle" opacity="0.5">Stamped by Sovereign Flame Authority</text>
+</svg>

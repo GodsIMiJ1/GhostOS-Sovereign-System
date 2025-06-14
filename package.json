@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "next build && echo '🔥 Build Success - GhostOS Public Mirror Ready'",
+    "build": "next build && npm run create-out && echo '🔥 Export Success - Static files generated in /out directory'",
+    "create-out": "mkdir -p out && cp -r .next/static out/_next && cp -r .next/server/app/* out/ && cp -r public/* out/ && echo '🔥 Static export created in /out'",
     "dev": "next dev",
     "start": "next start",
     "deploy": "npm run build",
