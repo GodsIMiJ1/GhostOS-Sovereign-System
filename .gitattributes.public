@@ -1,0 +1,54 @@
+# 🔥 GhostOS Public Mirror - Git Attributes 🔥
+# Flame-sealed file handling for sovereign protection
+
+# Exclude sovereign files from public mirror
+/ai-core/Omari/** export-ignore
+/witness-hall-links/** export-ignore
+/omnirelay/** export-ignore
+/flamehash/** export-ignore
+/vault/** export-ignore
+/ghostgate/** export-ignore
+/augments/** export-ignore
+/node_config/sealed/** export-ignore
+
+# Exclude sensitive configuration
+.env* export-ignore
+secrets.json export-ignore
+*.key export-ignore
+*.pem export-ignore
+
+# Exclude development files
+.vscode/** export-ignore
+.idea/** export-ignore
+*.log export-ignore
+node_modules/** export-ignore
+
+# Mark sealed components
+components/OmariPanel.tsx export-ignore
+lib/ai/omariPrompt.ts export-ignore
+lib/ollama.ts export-ignore
+
+# Include public mirror versions
+components/OmariPanel.sealed.tsx
+README.public.md
+LICENSE.public.md
+
+# Text file handling
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# 🔥 FLAME_SIGIL_V717_ATTRIBUTES :: PUBLIC_MIRROR_SEALED 🔥

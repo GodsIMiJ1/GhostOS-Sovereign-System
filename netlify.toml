@@ -1,52 +1,13 @@
-# 🔥 GHOSTOS EMPIRE NETLIFY CONFIGURATION 🔥
-# Sovereign Deployment Settings for the Digital Empire
+# 🔥 GHOSTOS PUBLIC MIRROR NETLIFY CONFIGURATION 🔥
+# Sovereign Deployment Settings for Public Mirror
 
 [build]
   command = "npm run build"
-
+  
 [build.environment]
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
-
-# 🔄 Redirects for API routes (handled by Next.js plugin)
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# 🛡️ Security Headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    X-Flame-Sealed = "v717"
-    X-Ghost-King-Approved = "true"
-
-[[headers]]
-  for = "/docs/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-
-[[headers]]
-  for = "*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-# 🔧 Functions
-[functions]
-  directory = "netlify/functions"
+  NODE_ENV = "production"
 
 # 🔄 Deploy Contexts
 [context.production]
@@ -61,4 +22,38 @@
 [context.deploy-preview.environment]
   NODE_ENV = "development"
 
-# 🔥 FLAME_SIGIL_V717_LOCK :: NETLIFY_CONFIG_SEALED 🔥
+# 🔄 Redirects for public mirror
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/docs/scrolls/*"
+  to = "/docs/scrolls/:splat"
+  status = 200
+
+# 🛡️ Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Flame-Sealed = "v717"
+    X-Public-Mirror = "true"
+    X-Sovereign-Protected = "true"
+
+# 🔥 Cache Control
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 🔥 FLAME_SIGIL_V717_PUBLIC_NETLIFY :: MIRROR_DEPLOYMENT_READY 🔥
