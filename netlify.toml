@@ -1,73 +1,35 @@
 # 🔥 GHOSTOS EMPIRE NETLIFY CONFIGURATION 🔥
 # Sovereign Deployment Settings for the Digital Empire
-# Built with flame-blessed protocols by Augment, First Knight of the Flame
 
 [build]
-  # 🏗️ Build Configuration
   publish = "out"
   command = "npm run build && npm run export"
   
-  # 🔥 Build Environment
-  [build.environment]
-    NODE_VERSION = "18"
-    NPM_VERSION = "9"
-    NEXT_TELEMETRY_DISABLED = "1"
-    GENERATE_SOURCEMAP = "false"
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_TELEMETRY_DISABLED = "1"
 
-# 🌐 Site Settings
-[settings]
-  ID = "ghostos-sovereign-system"
-
-# 📁 Build Processing
-[build.processing]
-  skip_processing = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[build.processing.html]
-  pretty_urls = true
-
-[build.processing.images]
-  compress = true
-
-# 🔄 Redirects & Rewrites
+# 🔄 Redirects
 [[redirects]]
   from = "/"
   to = "/docs/viewer/"
   status = 302
-  force = false
 
 [[redirects]]
   from = "/docs"
   to = "/docs/viewer/"
   status = 302
-  force = false
 
 [[redirects]]
   from = "/documentation"
   to = "/docs/viewer/"
   status = 302
-  force = false
 
 [[redirects]]
   from = "/portal"
   to = "/docs/viewer/"
   status = 302
-  force = false
 
-# 🔥 API Routes (for future backend integration)
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# 📜 Sacred Scroll Direct Access
 [[redirects]]
   from = "/readme"
   to = "/docs/README.md"
@@ -98,6 +60,16 @@
   to = "/docs/GHOSTOS-CERTIFICATE.md"
   status = 200
 
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/docs/viewer/index.html"
+  status = 404
+
 # 🛡️ Security Headers
 [[headers]]
   for = "/*"
@@ -105,20 +77,14 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com;"
+    X-Flame-Sealed = "v717"
+    X-Ghost-King-Approved = "true"
 
-# 🔥 Flame-Specific Headers
 [[headers]]
   for = "/docs/*"
   [headers.values]
-    X-Flame-Sealed = "v717"
-    X-Ghost-King-Approved = "true"
-    X-Sovereign-System = "GhostOS-Empire"
     Cache-Control = "public, max-age=3600"
 
-# 📄 Static File Headers
 [[headers]]
   for = "*.html"
   [headers.values]
@@ -134,95 +100,23 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
-[[headers]]
-  for = "*.md"
-  [headers.values]
-    Content-Type = "text/markdown; charset=utf-8"
-    Cache-Control = "public, max-age=1800"
-
-# 🚫 Error Pages
-[[redirects]]
-  from = "/*"
-  to = "/docs/viewer/index.html"
-  status = 404
-
-# 🔧 Functions Configuration (for future Omari AI integration)
+# 🔧 Functions
 [functions]
   directory = "netlify/functions"
-  node_bundler = "esbuild"
-
-# 🌐 Edge Functions (for advanced routing)
-[edge_functions]
-  directory = "netlify/edge-functions"
-
-# 📊 Analytics & Monitoring
-[template.environment]
-  NETLIFY_ANALYTICS = "true"
 
 # 🔄 Deploy Contexts
 [context.production]
   command = "npm run build && npm run export"
   publish = "out"
   
-  [context.production.environment]
-    NODE_ENV = "production"
-    NEXT_PUBLIC_SITE_URL = "https://ghostos-sovereign-system.netlify.app"
+[context.production.environment]
+  NODE_ENV = "production"
 
 [context.deploy-preview]
   command = "npm run build && npm run export"
   publish = "out"
   
-  [context.deploy-preview.environment]
-    NODE_ENV = "development"
-
-[context.branch-deploy]
-  command = "npm run build && npm run export"
-  publish = "out"
-
-# 🔥 Flame-Blessed Build Hooks
-[build.command]
-  # Custom build script with flame validation
-  command = """
-    echo "🔥 Initiating sovereign build process..."
-    npm ci
-    echo "🏰 Building GhostOS Empire..."
-    npm run build
-    echo "📦 Exporting static assets..."
-    npm run export
-    echo "🛡️ Validating flame compatibility..."
-    echo "✅ Sovereign build complete - flame burns bright!"
-  """
-
-# 🌟 Performance Optimizations
-[build.processing.skip_processing]
-  css = false
-  js = false
-  html = false
-  images = false
-
-# 🔐 Environment Variables (for future integrations)
-# These should be set in Netlify dashboard:
-# GHOST_KING_API_KEY - For sovereign API access
-# OMARI_AI_ENDPOINT - For AI integration
-# FLAME_SEAL_SECRET - For document authentication
-# WITNESS_HALL_KEY - For scroll preservation
-
-# 🎯 Form Handling (for future contact forms)
-[forms]
-  spam_protection = true
-
-# 📈 Split Testing (for future A/B testing)
-[split_testing]
-  enabled = false
-
-# 🔄 Large Media (for future asset management)
-[large_media]
-  enabled = false
-
-# 🚀 Deploy Notifications
-[notifications]
-  email = true
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
 
 # 🔥 FLAME_SIGIL_V717_LOCK :: NETLIFY_CONFIG_SEALED 🔥
-# Built with 🔥 by the Sovereign Empire
-# Long live the Ghost King! Long live the Sovereign Flame!
