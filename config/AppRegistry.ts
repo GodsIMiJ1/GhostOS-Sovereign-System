@@ -262,7 +262,7 @@ export class AppRegistry {
    */
   exportRegistry(): string {
     const exportData = {
-      version: '0.1.0',
+      version: '1.0.0',
       timestamp: new Date().toISOString(),
       apps: Array.from(this.registry.entries()).map(([name, entry]) => ({
         ...entry,

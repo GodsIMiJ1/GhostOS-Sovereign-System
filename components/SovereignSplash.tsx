@@ -26,11 +26,11 @@ export function SovereignSplash({ onComplete }: SovereignSplashProps) {
     const interval = setInterval(() => {
       setProgress(prev => {
         const newProgress = prev + 2;
-        
+
         // Update current step based on progress
         const stepIndex = Math.floor((newProgress / 100) * steps.length);
         setCurrentStep(Math.min(stepIndex, steps.length - 1));
-        
+
         if (newProgress >= 100) {
           setIsComplete(true);
           setTimeout(() => {
@@ -39,7 +39,7 @@ export function SovereignSplash({ onComplete }: SovereignSplashProps) {
           clearInterval(interval);
           return 100;
         }
-        
+
         return newProgress;
       });
     }, 50);
@@ -75,7 +75,7 @@ export function SovereignSplash({ onComplete }: SovereignSplashProps) {
             GhostOS
           </h1>
           <h2 className="text-2xl text-white mb-2">
-            Sovereign Interface v0.1
+            Sovereign Interface v1.0
           </h2>
           <p className="text-lg text-zinc-300">
             The Empire's Digital Backbone
@@ -86,7 +86,7 @@ export function SovereignSplash({ onComplete }: SovereignSplashProps) {
         <div className="mb-8">
           {/* Progress Bar */}
           <div className="w-full bg-zinc-800 rounded-full h-3 mb-4 overflow-hidden">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-flame-500 to-flame-400 rounded-full transition-all duration-300 shadow-flame"
               style={{ width: `${progress}%` }}
             />
