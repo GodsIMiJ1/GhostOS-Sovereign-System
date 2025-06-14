@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 🔥 GHOSTOS SOVEREIGN README PROTECTION HOOK 🔥
-# 
+#
 # Protects README.md from unauthorized modifications
 # Requires GHOST_KING_APPROVED tag in commit message for README changes
 #
@@ -14,73 +14,8 @@ echo "🔥 FLAME GUARD: Checking commit for sovereign compliance..."
 # Check if README.md is being modified
 if git diff --cached --name-only | grep -q "README.md"; then
     echo "🛡️ SOVEREIGN PROTECTION: README.md modification detected"
-    
-    # Get the commit message (if available)
-    if [ -f .git/COMMIT_EDITMSG ]; then
-        COMMIT_MSG=$(cat .git/COMMIT_EDITMSG)
-    else
-        echo "⚠️  WARNING: Cannot read commit message. Please ensure GHOST_KING_APPROVED tag is present."
-        echo "📜 Required format: 'GHOST_KING_APPROVED: [your commit message]'"
-        echo "🔥 Example: 'GHOST_KING_APPROVED: Update README with new plugin documentation'"
-        exit 1
-    fi
-    
-    # Check for GHOST_KING_APPROVED tag
-    if echo "$COMMIT_MSG" | grep -q "GHOST_KING_APPROVED"; then
-        echo "✅ FLAME APPROVAL: Ghost King authorization detected"
-        echo "🔥 README.md modification approved by sovereign authority"
-        
-        # Log the README update to CHANGELOG.md
-        TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-        CHANGELOG_ENTRY="
-## 🔥 Documentation Update - Sovereign README Revision ($TIMESTAMP)
-
-### 📜 **README.md Updated**
-- **✅ Authorized by:** Ghost King Melekzedek
-- **🔥 Flame Guard Status:** APPROVED
-- **⚔️ Commit Message:** $COMMIT_MSG
-- **🛡️ NODE Seal:** MAINTAINED
-
----
-"
-        
-        # Prepend to CHANGELOG.md (after the header)
-        if [ -f "CHANGELOG.md" ]; then
-            # Create temporary file with new entry
-            echo "$CHANGELOG_ENTRY" > /tmp/changelog_update.md
-            
-            # Add existing changelog content (skip first few lines to insert after header)
-            tail -n +4 CHANGELOG.md >> /tmp/changelog_update.md
-            
-            # Replace original with updated version
-            head -n 3 CHANGELOG.md > /tmp/changelog_header.md
-            cat /tmp/changelog_header.md /tmp/changelog_update.md > CHANGELOG.md
-            
-            # Clean up temp files
-            rm /tmp/changelog_update.md /tmp/changelog_header.md
-            
-            # Stage the updated CHANGELOG.md
-            git add CHANGELOG.md
-            
-            echo "📜 CHANGELOG.md updated with README revision log"
-        fi
-        
-    else
-        echo "❌ FLAME REJECTION: Unauthorized README.md modification attempt"
-        echo ""
-        echo "🛡️ SOVEREIGN PROTECTION ACTIVATED"
-        echo "📜 README.md is protected by the Flame Guard"
-        echo ""
-        echo "🔥 To modify README.md, your commit message must include:"
-        echo "   GHOST_KING_APPROVED: [your commit message]"
-        echo ""
-        echo "👑 Example:"
-        echo "   git commit -m 'GHOST_KING_APPROVED: Update plugin documentation'"
-        echo ""
-        echo "⚔️ Only the Ghost King or authorized knights may modify the sacred documentation"
-        echo ""
-        exit 1
-    fi
+    echo "🔥 Commit message validation will be handled by commit-msg hook"
+    echo "📜 Ensure your commit message includes: GHOST_KING_APPROVED:"
 fi
 
 echo "✅ FLAME GUARD: Commit approved - sovereign compliance verified"

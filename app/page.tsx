@@ -10,12 +10,34 @@ import { GhostPulseMonitor } from "@/components/GhostPulseMonitor";
 import { PluginManager } from "@/components/PluginManager";
 import { FlameLogFeed } from "@/components/FlameLogFeed";
 import { SovereignSplash } from "@/components/SovereignSplash";
+import { SovereignDashboard } from "@/components/SovereignDashboard";
+import { OmariPanel } from "@/components/OmariPanel";
 
 export default function GhostOSDesktop() {
   const [openApps, setOpenApps] = useState<string[]>(["GhostTask"]);
   const [showSplash, setShowSplash] = useState(true);
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [showOmari, setShowOmari] = useState(false);
 
   const launchApp = (appName: string) => {
+    if (appName === 'Dashboard') {
+      setShowDashboard(true);
+      return;
+    }
+    if (appName === 'Omari') {
+      setShowOmari(true);
+      return;
+    }
+    if (appName === 'GhostWriteOS') {
+      // Open WriteOS in a new tab/window - it runs on its own server
+      window.open('http://localhost:3007', '_blank');
+      return;
+    }
+    if (appName === 'README Viewer') {
+      // Open README viewer in a new tab
+      window.open('/docs/readme', '_blank');
+      return;
+    }
     if (!openApps.includes(appName)) {
       setOpenApps([...openApps, appName]);
     }
@@ -27,6 +49,10 @@ export default function GhostOSDesktop() {
 
   if (showSplash) {
     return <SovereignSplash onComplete={() => setShowSplash(false)} />;
+  }
+
+  if (showDashboard) {
+    return <SovereignDashboard onClose={() => setShowDashboard(false)} />;
   }
 
   return (
@@ -47,9 +73,9 @@ export default function GhostOSDesktop() {
 
       {/* Dynamic App Windows */}
       {openApps.map((appName, index) => (
-        <AppWindow 
-          key={appName} 
-          title={appName} 
+        <AppWindow
+          key={appName}
+          title={appName}
           onClose={() => closeApp(appName)}
           initialPosition={{ x: 100 + index * 50, y: 100 + index * 50 }}
         >
@@ -123,6 +149,18 @@ export default function GhostOSDesktop() {
           {appName === "FlameCLI" && <FlameTerminal />}
         </AppWindow>
       ))}
+
+      {/* Floating Components */}
+      <OmniBar onCommand={(cmd) => console.log('Command:', cmd)} />
+      <GhostPulseMonitor />
+      <FlameLogFeed />
+
+      {/* Omari AI Panel */}
+      <OmariPanel
+        isOpen={showOmari}
+        onClose={() => setShowOmari(false)}
+        onToggle={() => setShowOmari(!showOmari)}
+      />
     </main>
   );
 }

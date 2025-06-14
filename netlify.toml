@@ -3,8 +3,8 @@
 
 [build]
   publish = "out"
-  command = "npm run build && npm run export"
-  
+  command = "npm run deploy"
+
 [build.environment]
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
@@ -106,16 +106,16 @@
 
 # 🔄 Deploy Contexts
 [context.production]
-  command = "npm run build && npm run export"
+  command = "npm run deploy"
   publish = "out"
-  
+
 [context.production.environment]
   NODE_ENV = "production"
 
 [context.deploy-preview]
-  command = "npm run build && npm run export"
+  command = "npm run deploy"
   publish = "out"
-  
+
 [context.deploy-preview.environment]
   NODE_ENV = "development"
 

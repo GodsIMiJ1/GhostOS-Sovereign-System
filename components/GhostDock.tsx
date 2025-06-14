@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  CheckSquare, 
-  Mail, 
-  Shield, 
-  Terminal, 
-  Radio, 
+import {
+  CheckSquare,
+  Mail,
+  Shield,
+  Terminal,
+  Radio,
   Lock,
-  Flame
+  Flame,
+  Brain,
+  FileText,
+  BookOpen
 } from "lucide-react";
 
 interface GhostDockProps {
@@ -20,39 +23,57 @@ export function GhostDock({ openApps, onLaunch }: GhostDockProps) {
   const [hoveredApp, setHoveredApp] = useState<string | null>(null);
 
   const apps = [
-    { 
-      name: "GhostTask", 
-      icon: CheckSquare, 
+    {
+      name: "GhostTask",
+      icon: CheckSquare,
       color: "text-blue-400",
       description: "Task Management"
     },
-    { 
-      name: "GhostMail", 
-      icon: Mail, 
+    {
+      name: "GhostMail",
+      icon: Mail,
       color: "text-green-400",
       description: "Communication Hub"
     },
-    { 
-      name: "GhostVault", 
-      icon: Shield, 
+    {
+      name: "GhostVault",
+      icon: Shield,
       color: "text-purple-400",
       description: "Secure Storage"
     },
-    { 
-      name: "FlameCLI", 
-      icon: Terminal, 
+    {
+      name: "FlameCLI",
+      icon: Terminal,
       color: "text-flame",
       description: "Sovereign Terminal"
     },
-    { 
-      name: "GhostComm", 
-      icon: Radio, 
+    {
+      name: "Omari",
+      icon: Brain,
+      color: "text-red-400",
+      description: "Divine AI Assistant"
+    },
+    {
+      name: "GhostWriteOS",
+      icon: FileText,
+      color: "text-emerald-400",
+      description: "Sacred Scribe Terminal"
+    },
+    {
+      name: "README Viewer",
+      icon: BookOpen,
+      color: "text-flame",
+      description: "Sacred Documentation Portal"
+    },
+    {
+      name: "GhostComm",
+      icon: Radio,
       color: "text-cyan-400",
       description: "System Communication"
     },
-    { 
-      name: "GhostGate", 
-      icon: Lock, 
+    {
+      name: "GhostGate",
+      icon: Lock,
       color: "text-red-400",
       description: "Access Control"
     }
@@ -82,7 +103,7 @@ export function GhostDock({ openApps, onLaunch }: GhostDockProps) {
         {apps.map((app) => {
           const Icon = app.icon;
           const isOpen = openApps.includes(app.name);
-          
+
           return (
             <button
               key={app.name}
@@ -91,20 +112,20 @@ export function GhostDock({ openApps, onLaunch }: GhostDockProps) {
               onMouseLeave={() => setHoveredApp(null)}
               className={`
                 relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 flame-button
-                ${isOpen 
-                  ? 'bg-flame-500 shadow-flame scale-110' 
+                ${isOpen
+                  ? 'bg-flame-500 shadow-flame scale-110'
                   : 'bg-zinc-800 hover:bg-flame-500/30 hover:scale-105'
                 }
                 ${isOpen ? 'ring-2 ring-flame-400/50' : ''}
               `}
             >
               <Icon className={`w-5 h-5 ${isOpen ? 'text-white' : app.color} transition-colors`} />
-              
+
               {/* Active indicator */}
               {isOpen && (
                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-flame-400 rounded-full animate-pulse" />
               )}
-              
+
               {/* Hover glow effect */}
               <div className="absolute inset-0 rounded-full bg-flame-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </button>

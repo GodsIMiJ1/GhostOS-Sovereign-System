@@ -1,16 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Grid3X3, 
-  CheckSquare, 
-  Mail, 
-  Shield, 
-  Terminal, 
-  Radio, 
+import {
+  Grid3X3,
+  CheckSquare,
+  Mail,
+  Shield,
+  Terminal,
+  Radio,
   Lock,
   X,
-  Search
+  Search,
+  FileText,
+  BookOpen
 } from "lucide-react";
 
 interface AppLauncherProps {
@@ -30,7 +32,7 @@ export function AppLauncher({ onLaunch }: AppLauncherProps) {
       category: "Productivity"
     },
     {
-      name: "GhostMail", 
+      name: "GhostMail",
       icon: Mail,
       color: "text-green-400",
       description: "Email processing and communication hub",
@@ -39,7 +41,7 @@ export function AppLauncher({ onLaunch }: AppLauncherProps) {
     {
       name: "GhostVault",
       icon: Shield,
-      color: "text-purple-400", 
+      color: "text-purple-400",
       description: "Secure encrypted data storage and retrieval",
       category: "Security"
     },
@@ -61,8 +63,22 @@ export function AppLauncher({ onLaunch }: AppLauncherProps) {
       name: "GhostGate",
       icon: Lock,
       color: "text-red-400",
-      description: "Access control and security gateway", 
+      description: "Access control and security gateway",
       category: "Security"
+    },
+    {
+      name: "GhostWriteOS",
+      icon: FileText,
+      color: "text-emerald-400",
+      description: "Sovereign scroll writing terminal powered by Sacred Scribe AI",
+      category: "Productivity"
+    },
+    {
+      name: "README Viewer",
+      icon: BookOpen,
+      color: "text-flame",
+      description: "Sacred documentation portal - flame-sealed empire scripture",
+      category: "Documentation"
     }
   ];
 
