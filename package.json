@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "next build",
+    "build": "next build && echo 'Build completed successfully'",
     "dev": "next dev",
     "start": "next start",
     "deploy": "npm run build",
