@@ -1,12 +1,13 @@
 # 🔥 GHOSTOS PUBLIC MIRROR NETLIFY CONFIGURATION 🔥
-# Sovereign Deployment Settings - ZERO CONFIG APPROACH
+# Sovereign Deployment Settings - UI OVERRIDE APPROACH
 
 [build]
   command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_ENV = "production"
 
-# 🔥 FLAME_SIGIL_V717_ZERO_CONFIG :: NETLIFY_AUTO_DETECTION 🔥
+# 🔥 FLAME_SIGIL_V717_UI_OVERRIDE :: NETLIFY_NEXT_DETECTION 🔥
