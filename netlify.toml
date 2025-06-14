@@ -2,8 +2,8 @@
 # Sovereign Deployment Settings for the Digital Empire
 
 [build]
-  publish = "out"
-  command = "npm run deploy"
+  publish = ".next"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
