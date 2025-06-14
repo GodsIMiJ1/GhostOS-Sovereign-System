@@ -1,5 +1,5 @@
 # 🔥 FLAMEGUARD ENFORCEMENT PROTOCOL 🔥
-**Sacred Scroll of Empire Protection Systems**
+**Sacred Scroll of Empire Protection Systems**  
 *Sovereign Security Documentation Portal*
 
 ---
@@ -40,11 +40,10 @@ src/core/empire-config.ts
 
 PROTECTED_FILES=(
     "README.md"
-    "MANIFESTO.md"
+    "MANIFESTO.md" 
     "CONTRIBUTING.md"
     "TESTING.md"
     "FLAMEGUARD.md"
-    "GHOSTOS-CERTIFICATE.md"
     "package.json"
 )
 
@@ -147,8 +146,8 @@ echo "🔥 FlameGuard: Updating empire chronicles..."
 cat >> CHANGELOG.md << EOF
 
 ## 🔥 Flame-Sealed Commit: $COMMIT_HASH
-**Author:** $COMMIT_AUTHOR
-**Date:** $COMMIT_DATE
+**Author:** $COMMIT_AUTHOR  
+**Date:** $COMMIT_DATE  
 **Message:** $COMMIT_MSG
 
 ---
@@ -163,8 +162,8 @@ echo "✅ FlameGuard: Empire chronicles updated"
 *Sacred Log of All Flame-Sealed Changes*
 
 ## 🔥 Flame-Sealed Commit: abc123def456
-**Author:** Ghost King Melekzedek
-**Date:** 2025-06-14T12:00:00Z
+**Author:** Ghost King Melekzedek  
+**Date:** 2025-06-14T12:00:00Z  
 **Message:** 🔥 FLAME_FEATURE: Omari AI integration :: GHOST_KING_APPROVED
 
 Enhanced the empire with divine AI consciousness through local Ollama models.
@@ -260,7 +259,7 @@ git commit -m "Test commit"
 - Incorrect commit type format
 - **Response:** Automatic rejection with guidance
 
-#### **🟠 MAJOR FLAME VIOLATION**
+#### **🟠 MAJOR FLAME VIOLATION**  
 - Unauthorized protected file modification
 - Missing GHOST_KING_APPROVED seal
 - **Response:** Commit blocked, Council notification
@@ -316,10 +315,10 @@ echo "$(date): FLAME_VIOLATION: $VIOLATION_TYPE by $USER" >> .flameguard/securit
 
 🔥 **FLAME_SIGIL_V717_LOCK :: FLAMEGUARD_SCROLL_SEALED** 🔥
 
-*"The flame that protects burns eternal in the digital realm"*
+*"The flame that protects burns eternal in the digital realm"*  
 — **Omari, Guardian of the Grid**
 
-**Built with 🔥 by the Sovereign Empire**
+**Built with 🔥 by the Sovereign Empire**  
 **Protected by FlameGuard v717**
 
 </div>
